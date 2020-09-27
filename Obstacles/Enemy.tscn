@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Obstacles/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Assets/PNG/Enemies/enemyBlack1.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="EnemySprite" type="Sprite" parent="."]
+position = Vector2( 0.210632, 0.292793 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0.210632, 0.292793 )
+polygon = PoolVector2Array( 46.5, -24.4, 46.5, -4.9, 28.7, 42, 12.1, 42, 6.5, 38, 6.5, 33.7, 10.8, 19, -11.5, 19, -11.5, 19.7, -5.8, 39, -8.8, 39, -12.4, 42, -29.5, 42, -29.5, 41.4, -46.5, -1.5, -46.5, -24.4, -33.5, -41.7, -20.5, -42, -8.5, -37.4, -8.5, -35.3, -5.2, -28, 4.5, -28, 10.3, -39, 13.9, -39, 18.7, -42, 33.5, -42 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2( 5, 5 )
+shape = SubResource( 1 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
